@@ -1,10 +1,11 @@
-# Ex--5-Rail-Fence-Program
-
+# Ex:5-Rail-Fence-Program
 # IMPLEMENTATION OF RAIL FENCE – ROW & COLUMN TRANSFORMATION TECHNIQUE
 
-# AIM:
+## Name:SHYAM SUJIN U
+## Reg No.212223040201
 
-# To write a C program to implement the rail fence transposition technique.
+# AIM:
+To write a C program to implement the rail fence transposition technique.
 
 # DESCRIPTION:
 
@@ -18,8 +19,47 @@ STEP-3: Now read the keyword depending on the number of columns of the plain tex
 STEP-4: Arrange the characters of the keyword in sorted order and the corresponding columns of the plain text.
 STEP-5: Read the characters row wise or column wise in the former order to get the cipher text.
 
-# PROGRAM
+# PROGRAM:
+```
+def rail_fence_encrypt(message, rails):
+    if rails <= 1:
+        return message
+    
+    # Create a 2D list initialized with empty strings
+    fence = [['' for _ in range(len(message))] for _ in range(rails)]
+    
+    row, direction = 0, 1  # Start at the first row and move downward
+    
+    # Fill the fence
+    for col, char in enumerate(message):
+        fence[row][col] = char
+        
+        if row == 0:
+            direction = 1  # Change direction to downward
+        elif row == rails - 1:
+            direction = -1  # Change direction to upward
+        
+        row += direction
+    
+    # Read the fence row-wise to get the encrypted message
+    encrypted_message = ''.join(''.join(row) for row in fence)
+    return encrypted_message
 
-# OUTPUT
+# Get user input
+message = input("Enter a Secret Message: ")
+rails = int(input("Enter number of rails: "))
 
-# RESULT
+# Encrypt the message
+encrypted_message = rail_fence_encrypt(message, rails)
+print("Encrypted Message:", encrypted_message)
+```
+# OUTPUT:
+
+![image](https://github.com/user-attachments/assets/f94a8e0c-137d-4a99-88cd-e14070ef1d22)
+
+
+# RESULT:
+
+The program is executed successfully.
+
+
